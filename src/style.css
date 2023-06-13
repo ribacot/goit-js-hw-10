@@ -7,13 +7,16 @@ img {
   width: 50%;
   object-fit: contain;
 }
+.list{
+
+    list-style: none;
+}
+.list>.item{
+    margin-bottom: 10px;
+}
 .decorCat {
   display: flex;
   gap: 15px;
-  max-width: 50%;
-  /* flex-basis: 50%; */
-  border: 1px solid rgb(28, 95, 81);
-  border-radius: 5px;
 }
 .breed-select {
   display: block;

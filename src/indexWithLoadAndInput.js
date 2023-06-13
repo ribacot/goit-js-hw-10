@@ -12,30 +12,29 @@ const refs = {
 const select = new SlimSelect({
   select: '#single',
   settings: {
-    alwaysOpen: false,
     contentLocation: document.getElementById('local'),
     contentPosition: 'absolute',
-    placeholderText: 'gfhsfhg',
-    allowDeselect: false,
   },
   events: {
-    afterOpen: () => {
-      console.log('after open');
-    },
     afterChange: e => {
+      if (e[0].placeholder) {
+        return;
+      };
       const catId = e[0].id;
       return onSelect(catId);
     },
   },
 });
+
 const option = {
   value: 'id',
-  placeholder: true,
 };
 
 fetchBreeds()
   .then(breeds => {
-    return select.setData(marcupSelect(breeds));
+    const catList = marcupSelect(breeds);
+    catList.unshift({ placeholder: true, text: 'Select Cat' });
+    return select.setData(catList);
   })
   .catch(err => {
     Notify.failure('Oops! Something went wrong! Try reloading the page!');
