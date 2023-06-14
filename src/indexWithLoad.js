@@ -11,14 +11,14 @@ const refs = {
 refs.select.addEventListener('change', onSelect);
 
 fetchBreeds()
-  .then(breeds => (refs.select.innerHTML = marcupSelect(breeds)))
+  .then(breeds => (refs.select.innerHTML = markupSelect(breeds)))
   .catch(err => {
     Notify.failure('Oops! Something went wrong! Try reloading the page!');
     return console.log(err);
   })
   .finally(() => Loading.remove());
 
-function marcupSelect(breeds) {
+function markupSelect(breeds) {
   return `${breeds
     .map(
       ({ id, name }) =>
@@ -33,7 +33,7 @@ function onSelect(e) {
   fetchCatByBreed(id)
     .then(catArr => {
       refs.catEl.classList.add('decorCat');
-      return marcupCet(catArr, id);
+      return markupCet(catArr, id);
     })
     .catch(err => {
       Notify.failure('Oops! Something went wrong! Try reloading the page!');
@@ -42,7 +42,7 @@ function onSelect(e) {
     .finally(() => Loading.remove());
 }
 
-function marcupCet(catArr, id) {
+function markupCet(catArr, id) {
   return fetchBreeds()
     .then(breeds => breeds.find(cats => cats.id === id))
     .then(
